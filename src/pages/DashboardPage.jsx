@@ -1,8 +1,25 @@
 import React from 'react'
+import Container from '../components/Container'
+import ModuleBtn from '../components/ModuleBtn'
+import { HiCircleStack, HiComputerDesktop, HiDocumentDuplicate } from "react-icons/hi2";
 
 const DashboardPage = () => {
   return (
-    <div>DashboardPage</div>
+    <section>
+      <Container>
+        <div className="grid grid-cols-3 gap-5">
+          <div className="col-span-1">
+            <ModuleBtn name={"Product"} icon={<HiCircleStack className='size-14'/>} url={"/product"} />
+          </div>
+          <div className="col-span-1">
+            <ModuleBtn name={"Sale"} icon={<HiComputerDesktop className='size-14' />} url={"/sale"} />
+          </div>
+          <div className="col-span-1">
+            <ModuleBtn name={"Voucher"} icon={<HiDocumentDuplicate className='size-14' />} url={"/voucher"} />
+          </div>
+        </div>
+      </Container>
+    </section>
   )
 }
 
