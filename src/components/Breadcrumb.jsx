@@ -8,8 +8,8 @@ const Breadcrumb = ({ currentPageTitle }) => {
       <nav className="flex" aria-label="Breadcrumb">
         <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
           <li className="inline-flex items-center">
-            <Link to="/" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-blue-600">
-              <HiMiniHome className='mr-1 mb-1'/>
+            <Link to="/" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-600">
+              <HiMiniHome className='mr-1'/>
               Home
             </Link>
           </li>

@@ -7,7 +7,7 @@ const DashboardPage = () => {
   return (
     <section>
       <Container>
-        <div className="grid grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           <div className="col-span-1">
             <ModuleBtn name={"Product"} icon={<HiCircleStack className='size-14'/>} url={"/product"} />
           </div>
