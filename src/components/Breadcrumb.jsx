@@ -8,7 +8,7 @@ const Breadcrumb = ({ currentPageTitle }) => {
       <nav className="flex" aria-label="Breadcrumb">
         <ol className="inline-flex items-center space-x-1 md:space-x-2 rtl:space-x-reverse">
           <li className="inline-flex items-center">
-            <Link to="/" className="inline-flex items-center text-sm font-medium text-gray-700 hover:text-gray-600">
+            <Link to="/" className="inline-flex items-center text-sm font-medium text-stone-700 hover:text-stone-600">
               <HiMiniHome className='mr-1'/>
               Home
             </Link>
@@ -16,7 +16,7 @@ const Breadcrumb = ({ currentPageTitle }) => {
           <li aria-current="page">
             <div className="flex items-center">
               <HiChevronRight/>
-              <span className="ms-1 text-sm font-medium text-gray-500 md:ms-2">{currentPageTitle}</span>
+              <span className="ms-1 text-sm font-medium text-stone-500 md:ms-2">{currentPageTitle}</span>
             </div>
           </li>
         </ol>

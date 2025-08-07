@@ -1,8 +1,9 @@
 import React from 'react'
+import { Link } from 'react-router-dom'
 import { HiOutlineSearch } from 'react-icons/hi'
-import { HiOutlinePencil, HiOutlineTrash, HiPlus } from 'react-icons/hi2'
+import { HiComputerDesktop, HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi2'
 
-const ProductList = () => {
+const VoucherList = () => {
     return (
         <div className='mt-5'>
             <div className="flex justify-between items-center mb-3">
@@ -13,12 +14,12 @@ const ProductList = () => {
                             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                 <HiOutlineSearch />
                             </div>
-                            <input type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-stone-900 border border-stone-300 rounded-lg bg-stone-50 focus:ring-stone-500 focus:border-stone-500 " placeholder="Search Product..." required />
+                            <input type="search" id="default-search" className="block w-full p-4 ps-10 text-sm text-stone-900 border border-stone-300 rounded-lg bg-stone-50 focus:ring-stone-500 focus:border-stone-500 " placeholder="Search Voucher..." required />
                         </div>
                     </div>
                 </div>
                 <div className="">
-                    <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4font-medium rounded-lg text-sm p-4 me-2 mb-2 focus:outline-none flex justify-between items-center gap-3">Add New Product <HiPlus className="size-5" /></button>
+                    <Link to={"/sale"} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4font-medium rounded-lg text-sm p-4 me-2 mb-2 focus:outline-none flex justify-between items-center gap-3">Create Sale <HiComputerDesktop className="size-5" /></Link>
                 </div>
             </div>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
@@ -29,10 +30,10 @@ const ProductList = () => {
                                 #
                             </th>
                             <th scope="col" className="px-6 py-3">
-                                Product name
+                                Customer Name
                             </th>
-                            <th scope="col" className="px-6 py-3 text-end">
-                                Price
+                            <th scope="col" className="px-6 py-3">
+                                Email
                             </th>
                             <th scope="col" className="px-6 py-3 text-end">
                                 Created At
@@ -44,17 +45,17 @@ const ProductList = () => {
                     </thead>
                     <tbody>
                         <tr className="odd:bg-white even:bg-stone-50 border-b border-stone-200 hidden last:table-row">
-                            <td className="px-6 py-4 text-center" colSpan={5}>There is no product</td>
+                            <td className="px-6 py-4 text-center" colSpan={5}>There is no voucher</td>
                         </tr>
                         <tr className="odd:bg-white even:bg-stone-50 border-b border-stone-200">
                             <td className="px-6 py-4">
                                 1
                             </td>
                             <th scope="row" className="px-6 py-4 font-medium text-stone-900 whitespace-nowrap">
-                                Apple MacBook Pro 17"
+                                Kyaw Kyaw
                             </th>
-                            <td className="px-6 py-4 text-end">
-                                2999
+                            <td className="px-6 py-4">
+                                kyaw2@gmail.com
                             </td>
                             <td className="px-6 py-4 text-end">
                                 <p className='text-xs'>7 Aug 2025</p>
@@ -80,4 +81,4 @@ const ProductList = () => {
     )
 }
 
-export default ProductList
+export default VoucherList
