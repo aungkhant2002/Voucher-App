@@ -6,7 +6,7 @@ import { HiComputerDesktop, HiOutlinePencil, HiOutlineTrash } from 'react-icons/
 const VoucherList = () => {
     return (
         <div className='mt-5'>
-            <div className="flex justify-between items-center mb-3">
+            <div className="flex flex-col gap-3 md:flex-row md:justify-between md:items-center mb-3">
                 <div className="">
                     <div className="max-w-md mx-auto">
                         <label htmlFor="default-search" className="mb-2 text-sm font-medium text-stone-900 sr-only">Search</label>
@@ -18,7 +18,7 @@ const VoucherList = () => {
                         </div>
                     </div>
                 </div>
-                <div className="">
+                <div className="ms-auto">
                     <Link to={"/sale"} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4font-medium rounded-lg text-sm p-4 me-2 mb-2 focus:outline-none flex justify-between items-center gap-3">Create Sale <HiComputerDesktop className="size-5" /></Link>
                 </div>
             </div>
@@ -61,7 +61,7 @@ const VoucherList = () => {
                                 <p className='text-xs'>7 Aug 2025</p>
                                 <p className='text-xs'>10:00 PM</p>
                             </td>
-                            <td className="px-6 py-4 text-end">
+                            <td className="px-6 py-4 text-center">
                                 <div className="inline-flex rounded-md shadow-xs" role="group">
                                     <div>
                                         <button type="button" className="px-4 py-2 text-sm font-medium text-stone-900 bg-white border border-stone-200 rounded-s-lg hover:bg-stone-100 hover:text-stone-700 focus:z-10">

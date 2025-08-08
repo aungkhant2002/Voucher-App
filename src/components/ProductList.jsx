@@ -1,11 +1,20 @@
 import React from 'react'
 import { HiOutlineSearch } from 'react-icons/hi'
-import { HiOutlinePencil, HiOutlineTrash, HiPlus } from 'react-icons/hi2'
+import { HiPlus } from 'react-icons/hi2'
+import useSWR from 'swr'
+import ProductListSkeletonLoader from './ProductListSkeletonLoader';
+import ProductListEmptyState from './ProductListEmptyState';
+import ProductRow from './ProductRow';
+
+const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 const ProductList = () => {
+
+    const { data, error, isLoading } = useSWR(import.meta.env.VITE_API_URL + "/products", fetcher)
+
     return (
         <div className='mt-5'>
-            <div className="flex justify-between items-center mb-3">
+            <div className="flex flex-col gap-3 md:flex-row md:justify-between md:items-center mb-3">
                 <div className="">
                     <div className="max-w-md mx-auto">
                         <label htmlFor="default-search" className="mb-2 text-sm font-medium text-stone-900 sr-only">Search</label>
@@ -17,7 +26,7 @@ const ProductList = () => {
                         </div>
                     </div>
                 </div>
-                <div className="">
+                <div className="ms-auto">
                     <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4font-medium rounded-lg text-sm p-4 me-2 mb-2 focus:outline-none flex justify-between items-center gap-3">Add New Product <HiPlus className="size-5" /></button>
                 </div>
             </div>
@@ -25,7 +34,7 @@ const ProductList = () => {
                 <table className="w-full text-sm text-left rtl:text-right text-stone-500">
                     <thead className="text-xs text-stone-700 uppercase bg-stone-50">
                         <tr>
-                            <th scope="col" className="px-6 py-3">
+                            <th scope="col" className="px-6 py-3 text-end">
                                 #
                             </th>
                             <th scope="col" className="px-6 py-3">
@@ -43,36 +52,13 @@ const ProductList = () => {
                         </tr>
                     </thead>
                     <tbody>
-                        <tr className="odd:bg-white even:bg-stone-50 border-b border-stone-200 hidden last:table-row">
-                            <td className="px-6 py-4 text-center" colSpan={5}>There is no product</td>
-                        </tr>
-                        <tr className="odd:bg-white even:bg-stone-50 border-b border-stone-200">
-                            <td className="px-6 py-4">
-                                1
-                            </td>
-                            <th scope="row" className="px-6 py-4 font-medium text-stone-900 whitespace-nowrap">
-                                Apple MacBook Pro 17"
-                            </th>
-                            <td className="px-6 py-4 text-end">
-                                2999
-                            </td>
-                            <td className="px-6 py-4 text-end">
-                                <p className='text-xs'>7 Aug 2025</p>
-                                <p className='text-xs'>10:00 PM</p>
-                            </td>
-                            <td className="px-6 py-4 text-end">
-                                <div className="inline-flex rounded-md shadow-xs" role="group">
-                                    <div>
-                                        <button type="button" className="px-4 py-2 text-sm font-medium text-stone-900 bg-white border border-stone-200 rounded-s-lg hover:bg-stone-100 hover:text-stone-700 focus:z-10">
-                                            <HiOutlinePencil />
-                                        </button>
-                                        <button type="button" className="px-4 py-2 text-sm font-medium text-red-600 bg-white border border-stone-200 rounded-e-lg hover:bg-stone-100 hover:text-red-700 focus:z-10">
-                                            <HiOutlineTrash />
-                                        </button>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                        {isLoading ? (
+                            <ProductListSkeletonLoader />
+                        ) : data.length === 0 ? (
+                            <ProductListEmptyState />
+                        ) : (
+                            data.map((el) => <ProductRow product={el} key={el.id} />)
+                        )}
                     </tbody>
                 </table>
             </div>

@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .env
+backup.data.json
 
 # Editor directories and files
 .vscode/*
