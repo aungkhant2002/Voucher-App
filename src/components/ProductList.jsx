@@ -5,6 +5,7 @@ import useSWR from 'swr'
 import ProductListSkeletonLoader from './ProductListSkeletonLoader';
 import ProductListEmptyState from './ProductListEmptyState';
 import ProductRow from './ProductRow';
+import { Link } from 'react-router-dom';
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
@@ -27,7 +28,7 @@ const ProductList = () => {
                     </div>
                 </div>
                 <div className="ms-auto">
-                    <button type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4font-medium rounded-lg text-sm p-4 me-2 mb-2 focus:outline-none flex justify-between items-center gap-3">Add New Product <HiPlus className="size-5" /></button>
+                    <Link to={'/product/create'} type="button" className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4font-medium rounded-lg text-sm p-4 me-2 mb-2 focus:outline-none flex justify-between items-center gap-3">Add New Product <HiPlus className="size-5" /></Link>
                 </div>
             </div>
             <div className="relative overflow-x-auto shadow-md sm:rounded-lg">
