@@ -3,6 +3,7 @@ import { HiOutlinePencil, HiOutlineTrash } from 'react-icons/hi2'
 import { useSWRConfig } from 'swr'
 import { Bouncy } from 'ldrs/react'
 import 'ldrs/react/Bouncy.css'
+import toast from 'react-hot-toast'
 
 const ProductRow = ({ product: { id, product_name, price, created_at } }) => {
 
@@ -25,7 +26,8 @@ const ProductRow = ({ product: { id, product_name, price, created_at } }) => {
         setIsDeleting(true)
         await fetch(import.meta.env.VITE_API_URL + `/products/${id}`, {
             method: "DELETE"
-        })
+        });
+        toast.success("Product deleted successfully");
         mutate(import.meta.env.VITE_API_URL + "/products")
     }
 
