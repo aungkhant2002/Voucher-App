@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import { useForm } from 'react-hook-form'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { Tailspin } from 'ldrs/react'
 import 'ldrs/react/Tailspin.css'
 import toast from 'react-hot-toast'
@@ -14,20 +14,25 @@ const ProductCreateCard = () => {
         handleSubmit
     } = useForm();
 
+    const navigate = useNavigate();
     const [isSending, setIsSending] = useState(false);
 
     const handleCreateProduct = async (data) => {
         setIsSending(true);
-        data.created_at = new Date().toISOString();
         await fetch(import.meta.env.VITE_API_URL + "/products", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
             },
-            body: JSON.stringify(data)
+            body: JSON.stringify({ product_name: data.product_name, price: data.price, created_at: new Date().toISOString() })
         })
         setIsSending(false);
         reset();
+
+        if (data.back_to_product_list) {
+            navigate("/product");
+        }
+
         toast.success("Product created successfully.")
     }
 
@@ -74,6 +79,11 @@ const ProductCreateCard = () => {
                 <div className="flex items-center mb-4">
                     <input {...register("all_correct")} required id="all-correct" type="checkbox" defaultValue className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm " />
                     <label htmlFor="all-correct" className="ms-2 text-sm font-medium text-gray-900">Make sure all field are correct</label>
+                </div>
+
+                <div className="flex items-center mb-4">
+                    <input {...register("back_to_product_list")} id="back-to-product-list" type="checkbox" defaultValue className="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded-sm " />
+                    <label htmlFor="back-to-product-list" className="ms-2 text-sm font-medium text-gray-900">Back to product list after saving</label>
                 </div>
 
                 <Link to={'/product'} type="button" className="py-2.5 px-5 me-2 mb-2 text-sm font-medium text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-blue-700 ">Cancel</Link>

@@ -4,6 +4,7 @@ import { useSWRConfig } from 'swr'
 import { Bouncy } from 'ldrs/react'
 import 'ldrs/react/Bouncy.css'
 import toast from 'react-hot-toast'
+import { Link } from 'react-router-dom'
 
 const ProductRow = ({ product: { id, product_name, price, created_at } }) => {
 
@@ -49,9 +50,9 @@ const ProductRow = ({ product: { id, product_name, price, created_at } }) => {
             <td className="px-6 py-4 text-center">
                 <div className="inline-flex rounded-md shadow-xs" role="group">
                     <div className='flex'>
-                        <button type="button" className="size-10 flex justify-center items-center text-sm font-medium text-stone-900 bg-white border border-stone-200 rounded-s-lg hover:bg-stone-100 hover:text-stone-700 focus:z-10">
+                        <Link to={`/product/edit/${id}`} type="button" className="size-10 flex justify-center items-center text-sm font-medium text-stone-900 bg-white border border-stone-200 rounded-s-lg hover:bg-stone-100 hover:text-stone-700 focus:z-10">
                             <HiOutlinePencil />
-                        </button>
+                        </Link>
                         <button onClick={handleDeleteBtn} type="button" className="size-10 flex justify-center items-center text-sm font-medium text-red-600 bg-white border border-stone-200 rounded-e-lg hover:bg-stone-100 hover:text-red-700 focus:z-10">
                             {isDeleting ? (
                                 <Bouncy size="20" speed="1.75" color="red"/>
