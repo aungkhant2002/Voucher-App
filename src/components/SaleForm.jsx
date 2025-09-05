@@ -1,4 +1,3 @@
-import React from 'react'
 import { useForm } from 'react-hook-form'
 import useSWR from 'swr'
 import useRecordStore from '../stores/useRecordStore'
@@ -6,18 +5,25 @@ import useRecordStore from '../stores/useRecordStore'
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 const SaleForm = () => {
-    const { data, error, isLoading } = useSWR(import.meta.env.VITE_API_URL + "/products", fetcher)
+    const { data, isLoading } = useSWR(import.meta.env.VITE_API_URL + "/products", fetcher)
     const { register, handleSubmit, reset } = useForm()
-    const { addRecord } = useRecordStore()
+    const { addRecord, changeQuantity, records } = useRecordStore()
     const onSubmit = (data) => {
         const currentProduct = JSON.parse(data.product);
-        addRecord({
-            id: Date.now(),
-            product: currentProduct,
-            quantity: data.quantity,
-            cost: currentProduct.price * data.quantity,
-            created_at: new Date().toISOString()
-        })
+        const currentProductId = currentProduct.id;
+        const isExisted = records.find(({product: {id}}) => currentProductId === id)
+        if (isExisted) {
+            changeQuantity(isExisted.id, data.quantity)
+        } else {
+            addRecord({
+                id: Date.now(),
+                product: currentProduct,
+                quantity: data.quantity,
+                cost: currentProduct.price * data.quantity,
+                created_at: new Date().toISOString()
+            })
+        }
+
         reset()
     }
     return (

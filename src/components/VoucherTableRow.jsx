@@ -28,7 +28,7 @@ const VoucherTableRow = ({ record: { id, cost, quantity, product: { product_name
                 {product_name}
             </th>
             <td className="px-6 py-4 text-end">
-                {price}
+                {price.toLocaleString("en-US")}
             </td>
             <td className="px-6 py-4 text-end">
                 <button onClick={handleDecreaseQuantity} className="quantity-sub hidden group-hover:inline-block active:scale-90 border border-blue-500 text-blue-500 p-1 rounded-full mr-1">
@@ -36,7 +36,7 @@ const VoucherTableRow = ({ record: { id, cost, quantity, product: { product_name
                         <path strokeLinecap="round" strokeLinejoin="round" d="M5 12h14" />
                     </svg>
                 </button>
-                {quantity}
+                {quantity.toLocaleString("en-US")}
                 <button onClick={handleIncreaseQuantity} className="quantity-add hidden group-hover:inline-block active:scale-90 border border-blue-500 text-blue-500 p-1 rounded-full ml-1">
                     <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor" className="size-3 pointer-events-none">
                         <path strokeLinecap="round" strokeLinejoin="round" d="M12 4.5v15m7.5-7.5h-15" />
@@ -44,7 +44,7 @@ const VoucherTableRow = ({ record: { id, cost, quantity, product: { product_name
                 </button>
             </td>
             <td className="px-6 py-4 text-end">
-                {cost}
+                {cost.toLocaleString("en-US")}
             </td>
             <td>
                 <button onClick={handleDelete} className="hidden group-hover:inline-block active:scale-90 border border-red-500 text-red-500 p-1 rounded-full ml-1">

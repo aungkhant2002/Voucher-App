@@ -1,9 +1,13 @@
-import React from 'react'
 import useRecordStore from '../stores/useRecordStore'
 import VoucherTableRow from './VoucherTableRow'
 
 const VoucherTable = () => {
+
     const { records } = useRecordStore()
+    const total = parseInt(records.reduce((a, b) => a + b.cost, 0));
+    const tax = parseInt((total * 0.07).toFixed(0));
+    const netTotal = total + tax;
+
     return (
         <div className="relative overflow-x-auto shadow-md rounded-lg">
             <table className="w-full text-sm text-left rtl:text-right text-gray-500">
@@ -50,27 +54,27 @@ const VoucherTable = () => {
                             Total
                         </th>
                         <td className="px-6 py-4 text-end" id="recordTotal">
-                            {records.reduce((a, b) => a + b.cost, 0)}
+                            {total.toLocaleString("en-US")}
                         </td>
                         <td className="px-6 py-4 text-end table-cell print:hidden"></td>
                     </tr>
                     <tr className="border-b ">
                         <th colSpan={4} scope="row"
                             className="text-end px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            Tax
+                            Tax (Vat 7%)
                         </th>
                         <td className="px-6 py-4 text-end" id="recordTax">
-                            0
+                            {tax.toLocaleString("en-US")}
                         </td>
                         <td className="px-6 py-4 text-end table-cell print:hidden"></td>
                     </tr>
                     <tr className="border-b ">
                         <th colSpan={4} scope="row"
                             className="text-end px-6 py-4 font-medium text-gray-900 whitespace-nowrap">
-                            Net Total
+                            Net Total (mmk)
                         </th>
                         <td className="px-6 py-4 text-end" id="recordNetTotal">
-                            0
+                            {netTotal.toLocaleString("en-US")}
                         </td>
                         <td className="px-6 py-4 text-end"></td>
                     </tr>

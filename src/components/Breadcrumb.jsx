@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { HiChevronRight, HiMiniHome } from 'react-icons/hi2'
 import { Link } from 'react-router-dom'
 
