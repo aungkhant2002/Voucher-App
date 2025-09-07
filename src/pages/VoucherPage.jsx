@@ -4,14 +4,14 @@ import Breadcrumb from '../components/Breadcrumb';
 import VoucherList from '../components/VoucherList';
 
 const VoucherPage = () => {
-  return (
-    <section>
-      <Container>
-        <Breadcrumb currentPageTitle="Voucher" />
-        <VoucherList />
-      </Container>
-    </section>
-  )
+    return (
+        <section>
+            <Container>
+                <Breadcrumb currentPageTitle="Voucher"/>
+                <VoucherList/>
+            </Container>
+        </section>
+    )
 }
 
 export default VoucherPage

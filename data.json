@@ -60,5 +60,90 @@
       "price": 500,
       "created_at": "2025-07-19T12:30:00Z"
     }
+  ],
+  "vouchers": [
+    {
+      "voucher_id": "V-250907-3056",
+      "customer_name": "Aung Khant",
+      "customer_email": "ak@gmail.com",
+      "sale_date": "2025-09-07",
+      "all_correct": "true",
+      "records": [
+        {
+          "id": 1757259727507,
+          "product": {
+            "id": 3,
+            "product_name": "E-Commerce Platform Development",
+            "price": 3200,
+            "created_at": "2025-07-05T11:45:00Z"
+          },
+          "quantity": "1",
+          "cost": 3200,
+          "created_at": "2025-09-07T15:42:07.507Z"
+        }
+      ],
+      "total": 3200,
+      "netTotal": 3424,
+      "id": 1
+    },
+    {
+      "voucher_id": "V-250907-9395",
+      "customer_name": "Aung Khant",
+      "customer_email": "ak@gmail.com",
+      "sale_date": "2025-09-07",
+      "all_correct": "true",
+      "records": [
+        {
+          "id": 1757259864520,
+          "product": {
+            "id": 3,
+            "product_name": "E-Commerce Platform Development",
+            "price": 3200,
+            "created_at": "2025-07-05T11:45:00Z"
+          },
+          "quantity": "1",
+          "cost": 3200,
+          "created_at": "2025-09-07T15:44:24.520Z"
+        }
+      ],
+      "total": 3200,
+      "netTotal": 3424,
+      "id": 2
+    },
+    {
+      "voucher_id": "V-250907-9395",
+      "customer_name": "Aung Khant",
+      "customer_email": "ak@gmail.com",
+      "sale_date": "2025-09-07",
+      "all_correct": "true",
+      "records": [],
+      "total": 0,
+      "netTotal": 0,
+      "id": 3
+    },
+    {
+      "voucher_id": "V-250907-9661",
+      "customer_name": "Aung Khant",
+      "customer_email": "ak@gmail.com",
+      "sale_date": "2025-09-07",
+      "all_correct": "true",
+      "records": [
+        {
+          "id": 1757260210336,
+          "product": {
+            "id": 1,
+            "product_name": "Responsive Website Design",
+            "price": 1200,
+            "created_at": "2025-07-01T09:00:00Z"
+          },
+          "quantity": "1",
+          "cost": 1200,
+          "created_at": "2025-09-07T15:50:10.336Z"
+        }
+      ],
+      "total": 1200,
+      "netTotal": 1284,
+      "id": 4
+    }
   ]
 }

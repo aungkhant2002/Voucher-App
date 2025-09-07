@@ -7,8 +7,8 @@ const ProductEditPage = () => {
     return (
         <section>
             <Container>
-                <Breadcrumb currentPageTitle="Edit Product" links={[{ title: "Product", path: "/product" }]} />
-                <ProductEditCard />
+                <Breadcrumb currentPageTitle="Edit Product" links={[{title: "Product", path: "/product"}]}/>
+                <ProductEditCard/>
             </Container>
         </section>
     )

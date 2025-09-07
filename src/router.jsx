@@ -1,5 +1,5 @@
 import React from 'react'
-import { createBrowserRouter } from 'react-router-dom';
+import {createBrowserRouter} from 'react-router-dom';
 import Layout from './components/Layout';
 import NotFoundPage from './pages/NotFoundPage';
 import DashboardPage from './pages/DashboardPage';
@@ -12,32 +12,32 @@ import ProductEditPage from './pages/ProductEditPage';
 const router = createBrowserRouter([
     {
         path: "/",
-        element: <Layout />,
-        errorElement: <NotFoundPage />,
+        element: <Layout/>,
+        errorElement: <NotFoundPage/>,
         children: [
             {
                 index: true,
-                element: <DashboardPage />
+                element: <DashboardPage/>
             },
             {
                 path: '/product',
-                element: <ProductPage />
+                element: <ProductPage/>
             },
             {
                 path: '/product/create',
-                element: <ProductCreatePage />
+                element: <ProductCreatePage/>
             },
             {
                 path: '/product/edit/:id',
-                element: <ProductEditPage />
+                element: <ProductEditPage/>
             },
             {
                 path: '/sale',
-                element: <SalePage />
+                element: <SalePage/>
             },
             {
                 path: '/voucher',
-                element: <VoucherPage />
+                element: <VoucherPage/>
             }
         ]
     }

@@ -4,14 +4,14 @@ import Breadcrumb from '../components/Breadcrumb'
 import ProductList from '../components/ProductList'
 
 const ProductPage = () => {
-  return (
-    <section>
-      <Container>
-        <Breadcrumb currentPageTitle="Product" />
-        <ProductList />
-      </Container>
-    </section>
-  )
+    return (
+        <section>
+            <Container>
+                <Breadcrumb currentPageTitle="Product"/>
+                <ProductList/>
+            </Container>
+        </section>
+    )
 }
 
 export default ProductPage

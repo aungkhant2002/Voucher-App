@@ -5,14 +5,14 @@ import VoucherInfo from '../components/VoucherInfo'
 import SaleForm from '../components/SaleForm'
 
 const SalePage = () => {
-  return (
-    <section>
-      <Container>
-        <Breadcrumb currentPageTitle="Sale"/>
-        <VoucherInfo />
-      </Container>
-    </section>
-  )
+    return (
+        <section>
+            <Container>
+                <Breadcrumb currentPageTitle="Sale"/>
+                <VoucherInfo/>
+            </Container>
+        </section>
+    )
 }
 
 export default SalePage
