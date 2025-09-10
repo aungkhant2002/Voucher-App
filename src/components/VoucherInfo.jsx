@@ -19,7 +19,7 @@ const VoucherInfo = () => {
         const tax = parseInt((total * 0.07).toFixed(0));
         const netTotal = total + tax;
 
-        const currentVoucher = {...data, records, total, netTotal};
+        const currentVoucher = {...data, records, total, tax, netTotal};
 
         await fetch(import.meta.env.VITE_API_URL + "/vouchers", {
             method: 'POST',

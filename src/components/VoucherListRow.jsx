@@ -1,10 +1,11 @@
 import React, {useState} from 'react';
 import {HiOutlineSearch} from 'react-icons/hi'
-import {HiComputerDesktop, HiOutlinePencil, HiOutlineTrash} from 'react-icons/hi2'
+import {HiComputerDesktop, HiOutlineArrowLongRight, HiOutlinePencil, HiOutlineTrash} from 'react-icons/hi2'
 import ShowDate from "./ShowDate.jsx";
 import {useSWRConfig} from "swr";
 import {Bouncy} from 'ldrs/react'
 import toast from 'react-hot-toast'
+import {Link} from 'react-router-dom'
 
 const VoucherListRow = ({voucher: {id, voucher_id, customer_name, customer_email, sale_date}}) => {
     const {mutate} = useSWRConfig()
@@ -33,20 +34,25 @@ const VoucherListRow = ({voucher: {id, voucher_id, customer_name, customer_email
             </td>
             <td className="px-6 py-4 text-center">
                 <div className="inline-flex rounded-md shadow-xs" role="group">
-                    <div>
-                        <button onClick={handleDelete} type="button"
-                                className="flex size-10 justify-center items-center rounded-lg text-sm font-medium text-red-600 bg-white border border-stone-200 rounded-e-lg hover:bg-stone-100 hover:text-red-700 focus:z-10">
+                    <button onClick={handleDelete} type=" button"
+                                className=" flex size-10 justify-center items-center rounded-s-lg text-sm font-medium
+                          text-red-600 bg-white border border-stone-200 hover:bg-stone-100
+                          hover:text-red-700 focus:z-10">
                             {isDeleteing ? (
                                 <Bouncy size="20" speed="1.75" color="red"/>
                             ) : (
-                                <HiOutlineTrash/>
+                            <HiOutlineTrash/>
                             )}
-                        </button>
-                    </div>
-                </div>
-            </td>
-        </tr>
-    )
+                    </button>
+                    <Link to={`/voucher/detail/${id}`} className="flex size-10 justify-center items-center rounded-e-lg text-sm font-medium
+                          text-blue-700 bg-white border border-stone-200 hover:bg-stone-100
+                          hover:text-blue-700 focus:z-10">
+                        <HiOutlineArrowLongRight />
+                    </Link>
+            </div>
+        </td>
+</tr>
+)
 }
 
 export default VoucherListRow
