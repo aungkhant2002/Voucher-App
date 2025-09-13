@@ -2,6 +2,7 @@ import React from 'react'
 import {useParams} from "react-router-dom";
 import useSWR from "swr";
 import printJS from "print-js";
+import html2pdf from "html2pdf.js"
 
 const fetcher = (url) => fetch(url).then(res => res.json());
 const VoucherDetailCard = () => {
@@ -20,8 +21,20 @@ const VoucherDetailCard = () => {
         })
     }
 
+    const handlePDF = () => {
+        const printArea = document.getElementById("printArea");
+        const opt = {
+            margin: [0.5, 0.5],
+            filename: `${data.voucher_id}_invoice.pdf`,
+            image: {type: 'jpeg', quality: 0.98},
+            html2canvas: {scale: 2, useCORS: true},
+            jsPDF: {unit: 'mm', format: 'a5', orientation: 'portrait'},
+        }
+        html2pdf().from(printArea).set(opt).save();
+    }
+
     return (
-        <div className="flex gap-3">
+        <div className="flex items-end gap-3">
             <div id="printArea" className="w-[14.8cm] p-8 bg-white border mt-5">
                 <div className="flex justify-between items-start mb-8">
                     <div>
@@ -93,9 +106,12 @@ const VoucherDetailCard = () => {
                 </div>
 
             </div>
-            <div className="">
+            <div className="flex flex-col gap-3">
                 <button type="button" onClick={handlePrint}
                         className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Print
+                </button>
+                <button type="button" onClick={handlePDF}
+                        className="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Download PDF
                 </button>
             </div>
         </div>
