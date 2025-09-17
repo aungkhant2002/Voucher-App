@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {HiOutlineSearch} from 'react-icons/hi'
 import {HiPlus} from 'react-icons/hi2'
 import useSWR from 'swr'
@@ -6,13 +6,20 @@ import ProductListSkeletonLoader from './ProductListSkeletonLoader';
 import ProductListEmptyState from './ProductListEmptyState';
 import ProductRow from './ProductRow';
 import {Link} from 'react-router-dom';
+import {debounce} from "lodash/function.js";
 
 const fetcher = (...args) => fetch(...args).then(res => res.json())
 
 const ProductList = () => {
-
-    const {data, error, isLoading} = useSWR(import.meta.env.VITE_API_URL + "/products", fetcher)
-
+    const [search, setSearch] = useState('')
+    const {data, error, isLoading} = useSWR(
+        search
+            ? `${import.meta.env.VITE_API_URL}/products?product_name_like=${search}`
+            : `${import.meta.env.VITE_API_URL}/products`
+        , fetcher)
+    const handleSearch = debounce((e) => {
+        setSearch(e.target.value)
+    }, 500)
     return (
         <div className='mt-5'>
             <div className="flex flex-col gap-3 md:flex-row md:justify-between md:items-center mb-3">
@@ -24,7 +31,7 @@ const ProductList = () => {
                             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                 <HiOutlineSearch/>
                             </div>
-                            <input type="search" id="default-search"
+                            <input onChange={handleSearch} type="search" id="default-search"
                                    className="block w-full p-4 ps-10 text-sm text-stone-900 border border-stone-300 rounded-lg bg-stone-50 focus:ring-stone-500 focus:border-stone-500 "
                                    placeholder="Search Product..." required/>
                         </div>

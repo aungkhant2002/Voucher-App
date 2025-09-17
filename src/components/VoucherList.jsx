@@ -1,14 +1,23 @@
-import React from 'react'
+import React, {useState} from 'react'
 import {Link} from 'react-router-dom'
 import {HiOutlineSearch} from 'react-icons/hi'
 import {HiComputerDesktop, HiOutlinePencil, HiOutlineTrash} from 'react-icons/hi2'
 import useSWR from "swr";
 import VoucherListRow from "./VoucherListRow.jsx";
+import {debounce} from "lodash/function.js";
 
 const fetcher = (url) => fetch(url).then(res => res.json())
 
 const VoucherList = () => {
-    const {data, error, isLoading} = useSWR(import.meta.env.VITE_API_URL + '/vouchers', fetcher)
+    const [search, setSearch] = useState("");
+    const {data, error, isLoading} = useSWR(
+        search
+            ? `${import.meta.env.VITE_API_URL}/vouchers?voucher_id_like=${search}`
+            : `${import.meta.env.VITE_API_URL}/vouchers`
+        , fetcher)
+    const handleSearch = debounce((e) => {
+        setSearch(e.target.value)
+    }, 500)
     return (
         <div className='mt-5'>
             <div className="flex flex-col gap-3 md:flex-row md:justify-between md:items-center mb-3">
@@ -20,7 +29,7 @@ const VoucherList = () => {
                             <div className="absolute inset-y-0 start-0 flex items-center ps-3 pointer-events-none">
                                 <HiOutlineSearch/>
                             </div>
-                            <input type="search" id="default-search"
+                            <input onChange={handleSearch} type="search" id="default-search"
                                    className="block w-full p-4 ps-10 text-sm text-stone-900 border border-stone-300 rounded-lg bg-stone-50 focus:ring-stone-500 focus:border-stone-500 "
                                    placeholder="Search Voucher..." required/>
                         </div>
@@ -57,9 +66,13 @@ const VoucherList = () => {
                     <tr className="odd:bg-white even:bg-stone-50 border-b border-stone-200 hidden last:table-row">
                         <td className="px-6 py-4 text-center" colSpan={5}>There is no voucher</td>
                     </tr>
-                    {!isLoading && data.map((voucher, index) => (
-                        <VoucherListRow key={index} voucher={voucher}/>
-                    ))}
+                    {isLoading ?
+                        <tr className="odd:bg-white even:bg-stone-50 border-b border-stone-200 hidden last:table-row">
+                            <td className="px-6 py-4 text-center" colSpan={5}>Loading...</td>
+                        </tr>
+                        : data.map((voucher, index) => (
+                            <VoucherListRow key={index} voucher={voucher}/>
+                        ))}
                     </tbody>
                 </table>
             </div>
